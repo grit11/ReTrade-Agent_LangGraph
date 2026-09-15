@@ -6,7 +6,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 FORBIDDEN = {"crewai", "sentence_transformers", "torch"}
 
+
 def main():
+    """执行脚本入口逻辑。"""
     problems = []
     paths = sorted((ROOT / "src").rglob("*.py"))
     for path in paths:
@@ -34,6 +36,7 @@ def main():
     if problems:
         raise SystemExit("\n".join(problems))
     print(f"PASS: {len(paths)} Python source files; no old runtime/local-model imports; migrated data match.")
+
 
 if __name__ == "__main__":
     main()

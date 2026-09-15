@@ -1,3 +1,4 @@
+"""客户服务 Agent 构建模块，负责组合客户咨询提示词与可用工具。"""
 SYSTEM_PROMPT = """你是 ReTrade 二手交易平台综合客服，中文简洁友好。
 你的职责是公共咨询、平台帮助、知识检索和业务引导，不是私人订单查询或执行退款。
 任何平台事实（包括平台介绍、规则、费率、时间）必须调用 search_knowledge 并依据本轮返回资料回答。
@@ -14,6 +15,12 @@ from langchain.agents import create_agent
 from retrade_agent.models import AgentContext
 
 
-def build_agent(model,tools):
-    return create_agent(model=model,tools=tools,system_prompt=SYSTEM_PROMPT,
-                        context_schema=AgentContext,name='customer_agent')
+def build_agent(model, tools):
+    """创建指定业务域的 ReAct Agent。"""
+    return create_agent(
+        model=model,
+        tools=tools,
+        system_prompt=SYSTEM_PROMPT,
+        context_schema=AgentContext,
+        name="customer_agent",
+    )

@@ -1,38 +1,95 @@
+// ReTrade 前端交互模块，负责聊天、人工工作台、知识库和运行概览页面的状态与渲染。
 import {api,streamChat,staffToken,setStaffToken} from './api.js';
+
+// 常用 DOM 查询快捷方法。
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+
+// 展示用枚举文案，集中映射后端状态到中文界面标签。
 const domains={customer:'综合客服',order:'订单客服',after_sales:'售后服务',human:'人工客服'};
 const statuses={pending:'待处理',claimed:'已认领',resolving:'恢复中',resolved:'已完成',waiting_customer:'待补充',awaiting_confirmation:'待确认',waiting_human:'待人工',completed:'已完成',rejected:'未通过',responded:'已回复'};
+
+// 单页应用运行状态，保存当前视图、会话、身份和请求重试信息。
 const S={view:'chat',session:null,sessions:[],busy:false,actor:null,health:null,events:0,selectedTicket:null,pendingRetry:null,lastMessageSignature:''};
+
+// 创建 DOM 元素并可选设置 class 和文本内容。
 function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=String(text);return n;}
+
+// 清空指定 DOM 节点的所有子节点。
 function clear(node){node.replaceChildren();}
-let toastTimer;function toast(text,error=false){const n=$('#toast');n.textContent=text;n.className='toast'+(error?' error':'');clearTimeout(toastTimer);toastTimer=setTimeout(()=>n.classList.add('hidden'),5500);}
+
+let toastTimer;
+
+// 显示顶部操作反馈，并在固定时间后自动隐藏。
+function toast(text,error=false){const n=$('#toast');n.textContent=text;n.className='toast'+(error?' error':'');clearTimeout(toastTimer);toastTimer=setTimeout(()=>n.classList.add('hidden'),5500);}
+
+// 将分为单位的金额格式化为人民币展示。
 function money(cents){return '¥'+((cents||0)/100).toFixed(2);}
+
+// 将后端时间格式化为适合列表展示的中文短时间。
 function shortTime(value){try{return new Date(value).toLocaleString('zh-CN',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});}catch{return '';}}
+
+// 创建绑定 guard 的按钮，统一处理异步点击异常。
 function button(text,cls,fn){const b=el('button','button '+cls,text);b.type='button';b.addEventListener('click',()=>guard(fn));return b;}
+
+// 统一捕获界面异步操作异常，并按需弹出管理验证窗口。
 async function guard(fn){try{await fn();}catch(e){toast(e.message||'操作失败',true);if(e.status===401&&S.view!=='chat')$('#admin-dialog').showModal();}}
+
+// 检查后端健康状态并更新模式、连接和知识库状态提示。
 async function checkHealth(){try{S.health=await api('/health');const h=S.health;$('#mode-badge').textContent=h.app_mode==='offline'?'离线测试模型':'真实 API 模型';$('#mode-badge').classList.toggle('warning',h.app_mode==='offline');$('#connection-badge').textContent=h.status==='ok'?'● 服务在线':'● 知识检索待配置';if(!h.knowledge_ready)toast('知识库尚未就绪，请在知识库页面检查配置与索引。',true);}catch{ $('#mode-badge').textContent='服务未连接';toast('无法连接后端，请确认服务已启动。',true);}}
+
+// 切换演示客户身份，并重新加载该身份下的会话列表。
 async function login(user){if(S.busy){toast('请等待当前请求完成后再切换身份');return;}await api('/api/v1/auth/demo',{method:'POST',body:{user}});S.actor=await api('/api/v1/auth/me');S.session=null;S.pendingRetry=null;$('#identity-label').textContent=S.actor.customer_id==='demo-other'?'演示客户 B':'演示客户 A';await loadSessions();resetConversation();}
+
+// 加载并渲染当前客户的最近会话列表。
 async function loadSessions(){const value=await api('/api/v1/sessions');S.sessions=value.sessions;const n=$('#sessions');clear(n);if(!value.sessions.length){n.append(el('p','empty','还没有会话，开始一次新的沟通。'));return;}for(const s of value.sessions){const b=el('button','session-item'+(S.session?.session_id===s.session_id?' active':''));b.append(el('span','',s.title||'新会话'));b.title=s.title;b.onclick=()=>guard(()=>selectSession(s.session_id));n.append(b);}}
+
+// 重置聊天主区域到新会话初始状态。
 function resetConversation(){clear($('#messages'));$('#welcome').classList.remove('hidden');$('#session-title').textContent='新的服务对话';$('#human-banner').classList.add('hidden');resetTrace();$('#case-panel').classList.add('hidden');$('#domain-badge').textContent='综合客服';S.lastMessageSignature='';}
+
+// 重置右侧执行轨迹、来源和耗时统计。
 function resetTrace(){S.events=0;$('#event-count').textContent='0';$('#event-log').textContent='发送消息后，这里会显示实际执行阶段。';$('#event-log').className='event-log empty';$('#sources').textContent='当前暂无引用资料';$('#sources').className='source-list empty';$('#total-time').textContent='—';$('#tool-count').textContent='—';$$('[data-flow]').forEach(x=>x.classList.remove('active'));}
+
+// 创建新会话，必要时允许在发送首条消息前强制创建。
 async function newSession(force=false){if(S.busy&&!force)return;S.session=await api('/api/v1/sessions',{method:'POST',body:{}});S.pendingRetry=null;resetConversation();await loadSessions();$('#message-input').focus();}
+
+// 选择已有会话并渲染其持久化消息。
 async function selectSession(id){if(S.busy)return;const s=await api('/api/v1/sessions/'+id);S.session=s;S.pendingRetry=null;renderSession(s);await loadSessions();$('#sidebar').classList.remove('open');}
+
+// 向消息区域追加一条用户或助手消息。
 function appendMessage(role,content,meta='',target=$('#messages')){const m=el('div','message '+role);m.append(el('div','avatar',role==='user'?'我':'R'));const wrap=el('div','bubble-wrap');wrap.append(el('div','bubble-label',role==='user'?'你':'ReTrade 服务助手'));wrap.append(el('div','bubble',content));if(meta)wrap.append(el('div','message-meta',meta));m.append(wrap);target.append(m);return m;}
+
+// 根据会话详情刷新消息、欢迎区、标题和上一次处理结果。
 function renderSession(s){const signature=JSON.stringify((s.messages||[]).map(m=>[m.id,m.content]));if(signature!==S.lastMessageSignature){clear($('#messages'));for(const m of s.messages||[])appendMessage(m.role,m.content);S.lastMessageSignature=signature;scrollChat();}$('#welcome').classList.toggle('hidden',Boolean(s.messages?.length));$('#session-title').textContent=s.title||'新的服务对话';if(s.last_result)renderResult(s.last_result);}
+
+// 将聊天滚动区域移动到底部。
 function scrollChat(){requestAnimationFrame(()=>{$('#chat-scroll').scrollTop=$('#chat-scroll').scrollHeight;});}
+
+// 追加后端阶段事件，并同步点亮右侧工作流节点。
 function addEvent(event){if(!['stage','tool','handoff','human_wait','error'].includes(event.type))return;S.events++;$('#event-count').textContent=S.events;const n=$('#event-log');if(n.classList.contains('empty')){clear(n);n.classList.remove('empty');}const row=el('div','event-row');let text=event.message||event.stage||event.tool||event.type;if(event.type==='handoff')text='业务转交 → '+(domains[event.to_domain||event.target]||event.to_domain||event.target||'人工');if(event.type==='human_wait')text='工作流已暂停，等待人工';if(event.type==='tool')text=(event.name||event.tool||'业务工具')+' · '+(event.phase||event.status||'执行');row.append(el('span','',text));row.append(el('time','',event.elapsed_ms?Math.round(event.elapsed_ms)+' ms':''));n.append(row);while(n.children.length>35)n.firstChild.remove();n.scrollTop=n.scrollHeight;
  let step=event.type==='tool'?'tool':event.type==='human_wait'?'finalize':event.stage?.includes('triage')||event.stage?.includes('hydrate')?'triage':event.stage==='finalize'?'finalize':'agent';$('[data-flow="'+step+'"]')?.classList.add('active');if(S.busy)$('#activity span:last-child').textContent=text;
 }
+
+// 渲染一次聊天完成后的业务域、人工状态、来源、售后 case 和耗时统计。
 function renderResult(r){$('#domain-badge').textContent=domains[r.active_domain]||r.active_domain;$('#human-banner').classList.toggle('hidden',!r.waiting_human);$('#human-banner-text').textContent=r.ticket_id?'工单 '+r.ticket_id+' · 补充信息会直接交给人工客服。':'等待人工处理';$('#total-time').textContent=r.total_ms? (r.total_ms/1000).toFixed(2)+' s':'—';$('#tool-count').textContent=(r.used_tools||[]).length;$('#request-label').textContent='请求 '+r.request_id+(r.cache_hit?' · 公共知识缓存命中':' · 先验证后展示');const n=$('#sources');clear(n);n.className='source-list';for(const [i,source]of(r.sources||[]).entries())n.append(el('div','source-chip',(i+1)+'. '+source));if(!r.sources?.length){n.textContent='当前暂无引用资料';n.classList.add('empty');}
  $('#case-panel').classList.toggle('hidden',!r.case);if(r.case){const c=r.case,d=$('#case-detail');clear(d);for(const[k,v]of[['订单',c.order_id],['商品',c.product],['金额',money(c.amount_cents)],['状态',statuses[c.status]||c.status],['风险',c.risk_level]])if(v){const row=el('div','case-row');row.append(el('span','',k),el('span','',v));d.append(row);}if(c.policy?.reason)d.append(el('div','case-reason',c.policy.reason));$('#confirm-case').classList.toggle('hidden',c.status!=='awaiting_confirmation');}
 }
+
+// 发送聊天消息，处理幂等重试、SSE 回包、失败提示和会话刷新。
 async function send(text,forcedRequest=null){text=text.trim();if(!text||S.busy)return;S.busy=true;if(!S.session){try{await newSession(true);}catch(e){S.busy=false;throw e;}}if(!S.session){S.busy=false;return;}$('#send-button').disabled=true;$('#activity').classList.remove('hidden');$('#welcome').classList.add('hidden');$('#message-input').value='';$('#char-count').textContent='0 / 6000';resetTrace();const retry=forcedRequest||S.pendingRetry&&S.pendingRetry.message===text&&S.pendingRetry.session_id===S.session.session_id;const body=forcedRequest||(retry?S.pendingRetry:{session_id:S.session.session_id,request_id:crypto.randomUUID(),message:text});S.pendingRetry=body;if(!retry)appendMessage('user',text);scrollChat();let replyNode;
  try{await streamChat(body,event=>{addEvent(event);if(event.type==='token'){if(!replyNode)replyNode=appendMessage('assistant',event.content);else replyNode.querySelector('.bubble').textContent+=event.content;scrollChat();}if(event.type==='done'){if(!replyNode)replyNode=appendMessage('assistant',event.reply);renderResult(event);S.pendingRetry=null;}});S.session=await api('/api/v1/sessions/'+S.session.session_id);renderSession(S.session);await loadSessions();}
  catch(e){toast(e.message,true);const m=appendMessage('assistant','本次处理未获得完成回执。点击重试会复用原请求编号，不会创建新的重复请求。');m.classList.add('failed');m.querySelector('.bubble-wrap').append(button('重试此请求','secondary small',()=>send(text,body)));scrollChat();}
  finally{S.busy=false;$('#send-button').disabled=false;$('#activity').classList.add('hidden');}}
+
+// 确保当前视图已具备员工管理令牌。
 async function ensureAdmin(){if(!staffToken()){$('#admin-dialog').showModal();return false;}return true;}
+
+// 切换主视图，并在需要管理权限的页面加载对应数据。
 async function switchView(view){S.view=view;$$('.view').forEach(x=>x.classList.add('hidden'));$('#view-'+view).classList.remove('hidden');$$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.view===view));$('#page-title').textContent={chat:'智能客服',human:'人工工作台',knowledge:'知识库',metrics:'运行概览'}[view];$('#sidebar').classList.remove('open');if(view!=='chat'&&!await ensureAdmin())return;if(view==='human')await loadTickets();if(view==='knowledge')await loadKnowledge();if(view==='metrics')await loadMetrics();}
+
+// 加载人工工单列表并按当前筛选条件渲染。
 async function loadTickets(){if(!await ensureAdmin())return;const filter=$('#ticket-filter').value;const data=await api('/api/v1/human/tickets'+(filter?'?status='+filter:''),{staff:true});const n=$('#tickets');clear(n);if(!data.tickets.length)n.append(el('p','empty','没有符合条件的工单。'));for(const t of data.tickets){const b=el('button','ticket-item'+(S.selectedTicket===t.ticket_id?' active':''));const top=el('div','ticket-meta');top.append(el('span','',t.kind==='approval'?'售后审核':'人工咨询'),el('span','ticket-status '+t.status,statuses[t.status]||t.status));b.append(top,el('strong','',t.reason),el('small','',t.ticket_id),el('small','',shortTime(t.created_at)));b.onclick=()=>guard(()=>openTicket(t.ticket_id));n.append(b);}}
+
+// 打开单张工单详情，渲染会话记录和人工处理动作。
 async function openTicket(id){S.selectedTicket=id;const t=await api('/api/v1/human/tickets/'+id,{staff:true});const n=$('#ticket-workbench');clear(n);const title=el('div','card-title');title.append(el('span','',t.kind==='approval'?'审核售后申请':'处理人工咨询'),el('span','ticket-status '+t.status,statuses[t.status]||t.status));n.append(title,el('div','muted tiny',t.ticket_id+' · '+t.customer_id+' · 版本 '+t.version),el('div','ticket-info',t.reason));if(t.kind==='approval')n.append(el('div','ticket-info','此操作只提交模拟售后单，不会发生真实资金退款。\n'+(t.summary||'')));const transcript=el('div','ticket-transcript');for(const m of t.messages||[])appendMessage(m.role,m.content,'',transcript);n.append(transcript);transcript.scrollTop=transcript.scrollHeight;
  if(t.status==='resolved'){n.append(el('div','ticket-info','处理已完成：'+(t.decision?.message||'')));return;}
  const area=el('div','workbench-action');const input=el('textarea');input.placeholder='填写处理说明或需要客户补充的信息…';input.maxLength=3000;input.setAttribute('aria-label','人工处理说明');area.append(input);const actions=el('div','action-row');
@@ -41,8 +98,14 @@ async function openTicket(id){S.selectedTicket=id;const t=await api('/api/v1/hum
  for(const [decision,label,cls]of(t.kind==='approval'?[['approve','审核通过并恢复','primary'],['reject','驳回申请','danger']]:[['resolve','完成处理并恢复','primary']])){const b=button(label,cls,async()=>{if(!input.value.trim())return toast('请填写处理说明',true);if(!confirm('确认“'+label+'”？该决定会用于恢复当前暂停点。'))return;b.disabled=true;try{await api('/api/v1/human/resume',{method:'POST',body:{ticket_id:id,decision,message:input.value,expected_version:t.version,request_id:crypto.randomUUID()},staff:true});toast('工作流已恢复，结果已同步');await openTicket(id);await loadTickets();}finally{b.disabled=false;}});actions.append(b);}
  area.append(actions);n.append(area);if(t.status==='resolving'&&t.decision){input.value=t.decision.message;n.append(el('p','tiny muted','上次恢复未完成时，请使用相同处理说明和决定再次恢复。'));}
 }
+
+// 加载知识库文档列表并展示索引 generation。
 async function loadKnowledge(){if(!await ensureAdmin())return;const d=await api('/api/v1/knowledge',{staff:true});$('#generation').textContent=(d.generation||'').slice(0,10);const n=$('#documents');clear(n);if(d.last_error)n.append(el('p','case-reason','索引尚未就绪：'+d.last_error));for(const doc of d.documents){const row=el('div','document-item');row.append(el('span','','▤'));const text=el('div','document-main');text.append(el('strong','',doc.title),el('small','',(doc.chunk_count??doc.chunks?.length??0)+' 个分块 · '+shortTime(doc.updated_at)));row.append(text);const del=el('button','delete-doc','删除');del.onclick=()=>guard(async()=>{if(!confirm('删除文档“'+doc.title+'”？'))return;await api('/api/v1/knowledge/'+doc.document_id,{method:'DELETE',staff:true});await loadKnowledge();});row.append(del);n.append(row);}if(!d.documents.length)n.append(el('p','empty','暂无知识文档，请先导入。'));}
+
+// 加载运行统计和公开配置，用于运行概览页面。
 async function loadMetrics(){if(!await ensureAdmin())return;const [stats,h]=await Promise.all([api('/api/v1/stats',{staff:true}),api('/health')]);const n=$('#metric-cards');clear(n);for(const[k,v]of[['会话数',stats.sessions],['请求数',stats.requests??stats.runs],['人工工单',stats.tickets],['售后申请',stats.cases]]){const c=el('div','metric-card');c.append(el('small','',k),el('strong','',v??0));n.append(c);}const d=$('#runtime-config');clear(d);for(const[k,v]of Object.entries(h)){const row=el('div','config-item');row.append(el('span','',k),el('span','',typeof v==='object'?JSON.stringify(v):String(v)));d.append(row);}}
+
+// 绑定页面静态交互事件。
 $$('.nav-item').forEach(b=>b.onclick=()=>guard(()=>switchView(b.dataset.view)));
 $('#new-session').onclick=$('#new-session-small').onclick=()=>guard(newSession);
 $('#menu-button').onclick=()=>$('#sidebar').classList.toggle('open');
@@ -61,7 +124,12 @@ $('#refresh-knowledge').onclick=()=>guard(loadKnowledge);$('#refresh-metrics').o
 $('#upload-form').onsubmit=e=>{e.preventDefault();guard(async()=>{if(!await ensureAdmin())return;const f=$('#knowledge-file').files[0];if(!f)return;const form=new FormData();form.append('file',f);const b=$('#upload-form button');b.disabled=true;try{await api('/api/v1/knowledge/ingest',{method:'POST',body:form,staff:true});toast('文档导入完成');$('#knowledge-file').value='';await loadKnowledge();}finally{b.disabled=false;}});};
 $('#rebuild-knowledge').onclick=()=>guard(async()=>{if(!await ensureAdmin())return;$('#rebuild-knowledge').disabled=true;try{await api('/api/v1/knowledge/rebuild',{method:'POST',staff:true});toast('索引重建完成');await loadKnowledge();}finally{$('#rebuild-knowledge').disabled=false;}});
 $('#search-form').onsubmit=e=>{e.preventDefault();guard(async()=>{if(!await ensureAdmin())return;const n=$('#search-results');n.textContent='检索中…';const r=await api('/api/v1/knowledge/search',{method:'POST',body:{query:$('#search-input').value},staff:true});clear(n);n.classList.remove('empty');n.append(el('div','search-detail','检索详情：'+JSON.stringify(r.detail,null,2)));(r.contexts||[]).forEach((c,i)=>{const h=el('div','search-hit');h.append(el('strong','',(i+1)+'. '+r.sources[i]),el('p','',c));n.append(h);});if(!r.contexts?.length)n.append(el('p','empty','没有找到可用证据。'));});};
+
+// 初始化页面：检查健康状态、恢复身份和加载会话。
 async function init(){await checkHealth();try{S.actor=await api('/api/v1/auth/me');$('#identity-label').textContent=S.actor.customer_id==='demo-other'?'演示客户 B':'演示客户 A';await loadSessions();}catch(e){if(e.status===401){try{await login('demo-customer');}catch{toast('请通过身份服务登录；生产环境不提供演示身份。',true);}}else toast(e.message,true);}if(staffToken())$('#admin-button').textContent='管理已保存';}
+
 // Poll durable public transcript while waiting for staff; polling NEVER resumes the graph.
 setInterval(async()=>{if(S.view!=='chat'||!S.session||S.busy||S.session.status!=='waiting_human')return;try{S.session=await api('/api/v1/sessions/'+S.session.session_id);renderSession(S.session);}catch{}},4000);
+
+// 启动前端应用。
 init();
