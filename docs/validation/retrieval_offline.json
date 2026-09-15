@@ -1,0 +1,1571 @@
+{
+  "mode": "offline",
+  "metric": "keyword_proxy_hit_on_known_answer_items_NOT_answer_accuracy",
+  "total": 52,
+  "applicable": 47,
+  "hits": 47,
+  "rate": 1.0,
+  "tokenizer": "jieba if installed, otherwise explicit built-in bigrams",
+  "rows": [
+    {
+      "id": "kb-001",
+      "question": "怎么发布商品？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#0",
+        "knowledge_base.md#5",
+        "knowledge_base.md#6",
+        "knowledge_base.md#4",
+        "knowledge_base.md#1"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.29,
+        "bm25_hits": 7,
+        "vector_ms": 0.23,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.55
+      }
+    },
+    {
+      "id": "kb-002",
+      "question": "发布商品需要填写哪些信息？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#0",
+        "knowledge_base.md#6",
+        "knowledge_base.md#5",
+        "knowledge_base.md#1",
+        "knowledge_base.md#3"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.28,
+        "bm25_hits": 7,
+        "vector_ms": 0.19,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.49
+      }
+    },
+    {
+      "id": "kb-003",
+      "question": "发布商品对商品描述有什么要求？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#0",
+        "knowledge_base.md#6",
+        "knowledge_base.md#5",
+        "knowledge_base.md#1",
+        "knowledge_base.md#4"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.26,
+        "bm25_hits": 7,
+        "vector_ms": 0.21,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.49
+      }
+    },
+    {
+      "id": "kb-004",
+      "question": "商品发布成功后什么时候上架？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#0",
+        "knowledge_base.md#6",
+        "knowledge_base.md#2",
+        "knowledge_base.md#1",
+        "knowledge_base.md#5"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.26,
+        "bm25_hits": 7,
+        "vector_ms": 0.19,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.45
+      }
+    },
+    {
+      "id": "kb-005",
+      "question": "发布商品要收费吗？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#0",
+        "knowledge_base.md#6",
+        "knowledge_base.md#5",
+        "knowledge_base.md#1",
+        "knowledge_base.md#4"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.24,
+        "bm25_hits": 7,
+        "vector_ms": 0.21,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.46
+      }
+    },
+    {
+      "id": "kb-006",
+      "question": "发布商品必须上传什么材料？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#0",
+        "knowledge_base.md#6",
+        "knowledge_base.md#3",
+        "knowledge_base.md#1",
+        "knowledge_base.md#5"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.26,
+        "bm25_hits": 7,
+        "vector_ms": 0.19,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.46
+      }
+    },
+    {
+      "id": "kb-007",
+      "question": "商品成色和瑕疵需要写清楚吗？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#0",
+        "knowledge_base.md#1",
+        "knowledge_base.md#5",
+        "knowledge_base.md#3",
+        "knowledge_base.md#4"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.26,
+        "bm25_hits": 7,
+        "vector_ms": 0.22,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.49
+      }
+    },
+    {
+      "id": "kb-008",
+      "question": "商品发布后要经过什么流程才能展示？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#0",
+        "knowledge_base.md#6",
+        "knowledge_base.md#5",
+        "knowledge_base.md#1",
+        "knowledge_base.md#3"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.29,
+        "bm25_hits": 7,
+        "vector_ms": 0.2,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.5
+      }
+    },
+    {
+      "id": "kb-009",
+      "question": "怎么联系卖家？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#1",
+        "knowledge_base.md#4",
+        "knowledge_base.md#2",
+        "knowledge_base.md#3",
+        "knowledge_base.md#6"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.24,
+        "bm25_hits": 4,
+        "vector_ms": 0.2,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.46
+      }
+    },
+    {
+      "id": "kb-010",
+      "question": "联系卖家前建议确认什么？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#1",
+        "knowledge_base.md#2",
+        "knowledge_base.md#4",
+        "knowledge_base.md#3",
+        "knowledge_base.md#0"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.25,
+        "bm25_hits": 4,
+        "vector_ms": 0.19,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.46
+      }
+    },
+    {
+      "id": "kb-011",
+      "question": "在站外私下交易安全吗？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#1",
+        "knowledge_base.md#6",
+        "knowledge_base.md#0",
+        "knowledge_base.md#2",
+        "knowledge_base.md#5"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.24,
+        "bm25_hits": 2,
+        "vector_ms": 0.2,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.45
+      }
+    },
+    {
+      "id": "kb-012",
+      "question": "在哪里可以联系到卖家？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#1",
+        "knowledge_base.md#2",
+        "knowledge_base.md#4",
+        "knowledge_base.md#3",
+        "knowledge_base.md#0"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.24,
+        "bm25_hits": 4,
+        "vector_ms": 0.19,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.44
+      }
+    },
+    {
+      "id": "kb-013",
+      "question": "支持当面交易吗？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#1",
+        "knowledge_base.md#5",
+        "knowledge_base.md#6",
+        "knowledge_base.md#2",
+        "knowledge_base.md#3"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.23,
+        "bm25_hits": 4,
+        "vector_ms": 0.19,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.43
+      }
+    },
+    {
+      "id": "kb-014",
+      "question": "怎么下单支付？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#2",
+        "knowledge_base.md#1",
+        "knowledge_base.md#3",
+        "knowledge_base.md#5",
+        "knowledge_base.md#6"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.26,
+        "bm25_hits": 1,
+        "vector_ms": 0.18,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.45
+      }
+    },
+    {
+      "id": "kb-015",
+      "question": "支付支持哪些方式？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#2",
+        "knowledge_base.md#1",
+        "knowledge_base.md#5",
+        "knowledge_base.md#6",
+        "knowledge_base.md#3"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.24,
+        "bm25_hits": 3,
+        "vector_ms": 0.18,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.44
+      }
+    },
+    {
+      "id": "kb-016",
+      "question": "支付成功后卖家会收到什么？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#2",
+        "knowledge_base.md#6",
+        "knowledge_base.md#1",
+        "knowledge_base.md#0",
+        "knowledge_base.md#4"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.27,
+        "bm25_hits": 6,
+        "vector_ms": 0.21,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.49
+      }
+    },
+    {
+      "id": "kb-017",
+      "question": "提交订单前需要确认什么？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#2",
+        "knowledge_base.md#1",
+        "knowledge_base.md#3",
+        "knowledge_base.md#5",
+        "knowledge_base.md#0"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.25,
+        "bm25_hits": 3,
+        "vector_ms": 0.18,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.44
+      }
+    },
+    {
+      "id": "kb-018",
+      "question": "可以用平台余额支付吗？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#2",
+        "knowledge_base.md#1",
+        "knowledge_base.md#6",
+        "knowledge_base.md#5",
+        "knowledge_base.md#4"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.26,
+        "bm25_hits": 3,
+        "vector_ms": 0.19,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.46
+      }
+    },
+    {
+      "id": "kb-019",
+      "question": "下单后多久发货？",
+      "known_answer": false,
+      "keyword_proxy_hit": null,
+      "sources": [
+        "knowledge_base.md#2",
+        "knowledge_base.md#6",
+        "knowledge_base.md#1",
+        "knowledge_base.md#0",
+        "knowledge_base.md#5"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.23,
+        "bm25_hits": 1,
+        "vector_ms": 0.18,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.43
+      }
+    },
+    {
+      "id": "kb-020",
+      "question": "收货地址填错了怎么办？",
+      "known_answer": false,
+      "keyword_proxy_hit": null,
+      "sources": [
+        "knowledge_base.md#2",
+        "knowledge_base.md#3",
+        "knowledge_base.md#5",
+        "knowledge_base.md#4",
+        "knowledge_base.md#6"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.24,
+        "bm25_hits": 1,
+        "vector_ms": 0.2,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.45
+      }
+    },
+    {
+      "id": "kb-021",
+      "question": "平台退货规则是什么？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#3",
+        "knowledge_base.md#5",
+        "knowledge_base.md#4",
+        "knowledge_base.md#1",
+        "knowledge_base.md#2"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.25,
+        "bm25_hits": 6,
+        "vector_ms": 0.18,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.45
+      }
+    },
+    {
+      "id": "kb-022",
+      "question": "签收后多久内可以申请无理由退货？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#3",
+        "knowledge_base.md#5",
+        "knowledge_base.md#4",
+        "knowledge_base.md#6",
+        "knowledge_base.md#2"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.25,
+        "bm25_hits": 3,
+        "vector_ms": 0.21,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.47
+      }
+    },
+    {
+      "id": "kb-023",
+      "question": "无理由退货需要满足什么条件？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#5",
+        "knowledge_base.md#3",
+        "knowledge_base.md#4",
+        "knowledge_base.md#1",
+        "knowledge_base.md#6"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.25,
+        "bm25_hits": 3,
+        "vector_ms": 0.19,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.45
+      }
+    },
+    {
+      "id": "kb-024",
+      "question": "商品破损了，退货运费谁承担？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#4",
+        "knowledge_base.md#3",
+        "knowledge_base.md#5",
+        "knowledge_base.md#0",
+        "knowledge_base.md#1"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.24,
+        "bm25_hits": 7,
+        "vector_ms": 0.18,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.44
+      }
+    },
+    {
+      "id": "kb-025",
+      "question": "怎么申请退货？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#3",
+        "knowledge_base.md#5",
+        "knowledge_base.md#4",
+        "knowledge_base.md#0",
+        "knowledge_base.md#6"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.26,
+        "bm25_hits": 3,
+        "vector_ms": 0.18,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.46
+      }
+    },
+    {
+      "id": "kb-026",
+      "question": "商品与描述不符，运费由谁承担？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#4",
+        "knowledge_base.md#3",
+        "knowledge_base.md#0",
+        "knowledge_base.md#5",
+        "knowledge_base.md#2"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.25,
+        "bm25_hits": 7,
+        "vector_ms": 0.19,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.45
+      }
+    },
+    {
+      "id": "kb-027",
+      "question": "申请退货需要上传凭证吗？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#3",
+        "knowledge_base.md#5",
+        "knowledge_base.md#4",
+        "knowledge_base.md#0",
+        "knowledge_base.md#2"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.27,
+        "bm25_hits": 3,
+        "vector_ms": 0.18,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.46
+      }
+    },
+    {
+      "id": "kb-028",
+      "question": "退货运费由谁承担？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#4",
+        "knowledge_base.md#3",
+        "knowledge_base.md#5",
+        "knowledge_base.md#6",
+        "knowledge_base.md#2"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.38,
+        "bm25_hits": 3,
+        "vector_ms": 0.21,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.6
+      }
+    },
+    {
+      "id": "kb-029",
+      "question": "质量问题退货，运费谁出？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#4",
+        "knowledge_base.md#3",
+        "knowledge_base.md#5",
+        "knowledge_base.md#6",
+        "knowledge_base.md#1"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.26,
+        "bm25_hits": 3,
+        "vector_ms": 0.2,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.47
+      }
+    },
+    {
+      "id": "kb-030",
+      "question": "个人原因退货，运费谁出？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#4",
+        "knowledge_base.md#3",
+        "knowledge_base.md#5",
+        "knowledge_base.md#1",
+        "knowledge_base.md#6"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.62,
+        "bm25_hits": 3,
+        "vector_ms": 0.19,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.82
+      }
+    },
+    {
+      "id": "kb-031",
+      "question": "拍错了想退货，运费谁承担？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#4",
+        "knowledge_base.md#3",
+        "knowledge_base.md#5",
+        "knowledge_base.md#2",
+        "knowledge_base.md#1"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.25,
+        "bm25_hits": 3,
+        "vector_ms": 0.18,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.44
+      }
+    },
+    {
+      "id": "kb-032",
+      "question": "什么是七天无理由退货？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#5",
+        "knowledge_base.md#3",
+        "knowledge_base.md#4",
+        "knowledge_base.md#1",
+        "knowledge_base.md#6"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.27,
+        "bm25_hits": 3,
+        "vector_ms": 0.21,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.49
+      }
+    },
+    {
+      "id": "kb-033",
+      "question": "哪些商品不支持七天无理由退货？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#5",
+        "knowledge_base.md#3",
+        "knowledge_base.md#1",
+        "knowledge_base.md#4",
+        "knowledge_base.md#6"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.27,
+        "bm25_hits": 7,
+        "vector_ms": 0.19,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.47
+      }
+    },
+    {
+      "id": "kb-034",
+      "question": "七天无理由退货的商品需要保持什么状态？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#5",
+        "knowledge_base.md#3",
+        "knowledge_base.md#4",
+        "knowledge_base.md#1",
+        "knowledge_base.md#0"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.28,
+        "bm25_hits": 7,
+        "vector_ms": 0.19,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.48
+      }
+    },
+    {
+      "id": "kb-035",
+      "question": "商品影响二次销售还能退货吗？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#5",
+        "knowledge_base.md#3",
+        "knowledge_base.md#0",
+        "knowledge_base.md#4",
+        "knowledge_base.md#1"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.25,
+        "bm25_hits": 7,
+        "vector_ms": 0.18,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.44
+      }
+    },
+    {
+      "id": "kb-036",
+      "question": "平台服务费怎么收取？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#6",
+        "knowledge_base.md#2",
+        "knowledge_base.md#1",
+        "knowledge_base.md#4",
+        "knowledge_base.md#3"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.23,
+        "bm25_hits": 3,
+        "vector_ms": 0.2,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.45
+      }
+    },
+    {
+      "id": "kb-037",
+      "question": "服务费是发布时收还是交易后收？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#6",
+        "knowledge_base.md#0",
+        "knowledge_base.md#1",
+        "knowledge_base.md#4",
+        "knowledge_base.md#2"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.24,
+        "bm25_hits": 3,
+        "vector_ms": 0.18,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.43
+      }
+    },
+    {
+      "id": "kb-038",
+      "question": "发布商品收服务费吗？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#0",
+        "knowledge_base.md#6",
+        "knowledge_base.md#5",
+        "knowledge_base.md#2",
+        "knowledge_base.md#1"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.24,
+        "bm25_hits": 7,
+        "vector_ms": 0.2,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.45
+      }
+    },
+    {
+      "id": "kb-039",
+      "question": "什么情况会扣保证金？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#6",
+        "knowledge_base.md#4",
+        "knowledge_base.md#3",
+        "knowledge_base.md#1",
+        "knowledge_base.md#0"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.23,
+        "bm25_hits": 1,
+        "vector_ms": 0.18,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.43
+      }
+    },
+    {
+      "id": "kb-040",
+      "question": "售假会有什么后果？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#6",
+        "knowledge_base.md#0",
+        "knowledge_base.md#1",
+        "knowledge_base.md#5",
+        "knowledge_base.md#3"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.23,
+        "bm25_hits": 1,
+        "vector_ms": 0.18,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.42
+      }
+    },
+    {
+      "id": "kb-041",
+      "question": "恶意违约有什么后果？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#6",
+        "knowledge_base.md#1",
+        "knowledge_base.md#5",
+        "knowledge_base.md#3",
+        "knowledge_base.md#2"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.26,
+        "bm25_hits": 1,
+        "vector_ms": 0.21,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.48
+      }
+    },
+    {
+      "id": "kb-042",
+      "question": "商品破损想退货，运费和流程是什么？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#3",
+        "knowledge_base.md#4",
+        "knowledge_base.md#0",
+        "knowledge_base.md#5",
+        "knowledge_base.md#1"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.25,
+        "bm25_hits": 7,
+        "vector_ms": 0.19,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.45
+      }
+    },
+    {
+      "id": "kb-043",
+      "question": "拍错了想退货，谁出运费？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#4",
+        "knowledge_base.md#3",
+        "knowledge_base.md#5",
+        "knowledge_base.md#2",
+        "knowledge_base.md#1"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.27,
+        "bm25_hits": 3,
+        "vector_ms": 0.18,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.46
+      }
+    },
+    {
+      "id": "kb-044",
+      "question": "定制商品能七天无理由退货吗？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#5",
+        "knowledge_base.md#3",
+        "knowledge_base.md#4",
+        "knowledge_base.md#0",
+        "knowledge_base.md#6"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.25,
+        "bm25_hits": 7,
+        "vector_ms": 0.18,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.44
+      }
+    },
+    {
+      "id": "kb-045",
+      "question": "服务费和保证金是一回事吗？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#6",
+        "knowledge_base.md#2",
+        "knowledge_base.md#4",
+        "knowledge_base.md#0",
+        "knowledge_base.md#3"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.26,
+        "bm25_hits": 1,
+        "vector_ms": 0.19,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.46
+      }
+    },
+    {
+      "id": "kb-046",
+      "question": "在站外跟卖家私下交易安全吗？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#1",
+        "knowledge_base.md#6",
+        "knowledge_base.md#2",
+        "knowledge_base.md#4",
+        "knowledge_base.md#3"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.24,
+        "bm25_hits": 5,
+        "vector_ms": 0.18,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.44
+      }
+    },
+    {
+      "id": "kb-047",
+      "question": "付款后多久能收到货？",
+      "known_answer": false,
+      "keyword_proxy_hit": null,
+      "sources": [
+        "knowledge_base.md#2",
+        "knowledge_base.md#0",
+        "knowledge_base.md#5",
+        "knowledge_base.md#6",
+        "knowledge_base.md#4"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.26,
+        "bm25_hits": 1,
+        "vector_ms": 0.19,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.46
+      }
+    },
+    {
+      "id": "kb-048",
+      "question": "退货申请后多久退款到账？",
+      "known_answer": false,
+      "keyword_proxy_hit": null,
+      "sources": [
+        "knowledge_base.md#3",
+        "knowledge_base.md#5",
+        "knowledge_base.md#4",
+        "knowledge_base.md#2",
+        "knowledge_base.md#0"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.24,
+        "bm25_hits": 3,
+        "vector_ms": 0.18,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.43
+      }
+    },
+    {
+      "id": "kb-049",
+      "question": "卖家让我私下转账可以吗？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#1",
+        "knowledge_base.md#4",
+        "knowledge_base.md#2",
+        "knowledge_base.md#3",
+        "knowledge_base.md#0"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.23,
+        "bm25_hits": 4,
+        "vector_ms": 0.21,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.45
+      }
+    },
+    {
+      "id": "kb-050",
+      "question": "商品发布后审核需要多久？",
+      "known_answer": false,
+      "keyword_proxy_hit": null,
+      "sources": [
+        "knowledge_base.md#0",
+        "knowledge_base.md#6",
+        "knowledge_base.md#1",
+        "knowledge_base.md#5",
+        "knowledge_base.md#4"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.28,
+        "bm25_hits": 7,
+        "vector_ms": 0.19,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.48
+      }
+    },
+    {
+      "id": "kb-051",
+      "question": "贴身衣物想退货可以吗？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#5",
+        "knowledge_base.md#4",
+        "knowledge_base.md#3",
+        "knowledge_base.md#0",
+        "knowledge_base.md#6"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.24,
+        "bm25_hits": 3,
+        "vector_ms": 0.2,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.45
+      }
+    },
+    {
+      "id": "kb-052",
+      "question": "不想要了退货，运费谁出？",
+      "known_answer": true,
+      "keyword_proxy_hit": true,
+      "sources": [
+        "knowledge_base.md#4",
+        "knowledge_base.md#3",
+        "knowledge_base.md#5",
+        "knowledge_base.md#0",
+        "knowledge_base.md#1"
+      ],
+      "detail": {
+        "generation": "286e8f547350628df924e952",
+        "hybrid": true,
+        "bm25_ms": 0.25,
+        "bm25_hits": 3,
+        "vector_ms": 0.18,
+        "vector_hits": 7,
+        "rerank": {
+          "provider": "siliconflow",
+          "model": "BAAI/bge-reranker-v2-m3",
+          "applied": false,
+          "reason": "disabled_or_offline"
+        },
+        "rerank_ms": 0.0,
+        "fused": 7,
+        "total_ms": 0.44
+      }
+    }
+  ]
+}

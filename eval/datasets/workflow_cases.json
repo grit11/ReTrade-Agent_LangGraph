@@ -1,0 +1,69 @@
+[
+  {
+    "id": "wf-01",
+    "messages": [
+      "你好",
+      "平台退货规则是什么？"
+    ],
+    "expected": [
+      "customer",
+      "customer"
+    ],
+    "tools": [
+      "search_knowledge"
+    ]
+  },
+  {
+    "id": "wf-02",
+    "messages": [
+      "订单202608090001到哪了？",
+      "什么时候到？"
+    ],
+    "expected": [
+      "order",
+      "order"
+    ],
+    "assert": "second turn must not call triage"
+  },
+  {
+    "id": "wf-03",
+    "messages": [
+      "订单202609140001我要退货，不想要了，商品未使用",
+      "确认提交"
+    ],
+    "expected": [
+      "awaiting_confirmation",
+      "completed"
+    ]
+  },
+  {
+    "id": "wf-04",
+    "messages": [
+      "订单202609140002我要退货，不想要了，商品未使用",
+      "确认提交"
+    ],
+    "expected": [
+      "awaiting_confirmation",
+      "waiting_human"
+    ]
+  },
+  {
+    "id": "wf-05",
+    "messages": [
+      "我要人工客服"
+    ],
+    "expected": [
+      "waiting_human"
+    ],
+    "resume": "authenticated staff resolve"
+  },
+  {
+    "id": "wf-06",
+    "messages": [
+      "查询订单202609140004"
+    ],
+    "expected": [
+      "no private order data"
+    ]
+  }
+]

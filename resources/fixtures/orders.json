@@ -1,0 +1,7 @@
+[
+ {"order_id":"202609140001","customer_id":"demo-customer","product":"复古机械键盘","amount_cents":19900,"status":"delivered","payment_status":"paid","delivered_days_ago":2,"special_category":false,"simulated":true,"logistics":[{"time":"09:00","status":"快件已签收（模拟）"}]},
+ {"order_id":"202609140002","customer_id":"demo-customer","product":"二手微单相机","amount_cents":299900,"status":"delivered","payment_status":"paid","delivered_days_ago":3,"special_category":false,"simulated":true,"logistics":[{"time":"14:20","status":"快件已签收（模拟）"}]},
+ {"order_id":"202609140003","customer_id":"demo-customer","product":"桌面音箱","amount_cents":8900,"status":"delivered","payment_status":"paid","delivered_days_ago":30,"special_category":false,"simulated":true,"logistics":[{"time":"12:00","status":"已签收（模拟）"}]},
+ {"order_id":"202609140004","customer_id":"demo-other","product":"他人订单：测试隔离","amount_cents":56000,"status":"shipped","payment_status":"paid","delivered_days_ago":null,"special_category":false,"simulated":true,"logistics":[{"time":"10:10","status":"运输中（模拟）"}]},
+ {"order_id":"202608090001","customer_id":"demo-customer","product":"二手运动手表","amount_cents":39900,"status":"shipped","payment_status":"paid","delivered_days_ago":null,"special_category":false,"simulated":true,"logistics":[{"time":"08:30","status":"卖家已交寄（模拟）"},{"time":"16:40","status":"转运中心处理中，暂无承诺送达时间（模拟）"}]}
+]

@@ -1,0 +1,2 @@
+# Install from the project root. Python 3.11 or 3.12 recommended.
+-e .[dev]

@@ -1,0 +1,14 @@
+{
+  "scope": "Offline browser rendering and interactions with in-memory API fixtures; NOT LangGraph/network integration",
+  "checks": [
+    "offline badge / demo login UI",
+    "event handling and public transcript refresh",
+    "source rendering",
+    "staff login / ticket list / claim interaction",
+    "knowledge list and offline UI response contract",
+    "operations counters and sanitized config",
+    "390px mobile layout / no horizontal overflow / menu"
+  ],
+  "passed": 7,
+  "page_errors": []
+}

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="theme-color" content="#123f39"><title>ReTrade · 智能服务工作台</title><link rel="stylesheet" href="/static/styles.css"></head>
+<body>
+<div class="shell">
+<aside class="sidebar" id="sidebar">
+  <a class="brand" href="/" aria-label="ReTrade 首页"><span class="brand-mark">R<span>↗</span></span><span>ReTrade<small>INTELLIGENT SERVICE</small></span></a>
+  <div class="workspace-label">服务工作空间 <span class="version">0.1</span></div>
+  <nav class="main-nav" aria-label="主要导航">
+    <button class="nav-item active" data-view="chat"><span class="nav-icon">◉</span>智能客服<span class="nav-dot"></span></button>
+    <button class="nav-item" data-view="human"><span class="nav-icon">◎</span>人工工作台<span class="nav-lock">管理</span></button>
+    <button class="nav-item" data-view="knowledge"><span class="nav-icon">▤</span>知识库<span class="nav-lock">管理</span></button>
+    <button class="nav-item" data-view="metrics"><span class="nav-icon">▥</span>运行概览<span class="nav-lock">管理</span></button>
+  </nav>
+  <div class="session-heading"><span>最近会话</span><button id="new-session-small" class="icon-button" aria-label="创建新会话">＋</button></div>
+  <div id="sessions" class="session-list"></div>
+  <div class="sidebar-bottom"><span class="online-dot"></span><div id="identity-label">连接中…</div><button id="account-button" class="icon-button" aria-label="切换账户">⇄</button></div>
+</aside>
+<main class="main">
+  <header class="topbar"><div class="topbar-title"><button id="menu-button" class="icon-button mobile-only" aria-label="展开菜单">☰</button><span id="page-title">智能客服</span><span class="slash">/</span><span class="muted small" id="page-subtitle">让每一次沟通，都有下一步</span></div><div class="header-actions"><span class="pill" id="mode-badge">连接中</span><button class="button ghost small" id="admin-button">管理验证</button></div></header>
+  <div class="notice" id="system-notice"><span class="notice-dot"></span><span>订单与售后均为模拟数据；不会执行真实扣款、退款或发货。</span><span id="connection-badge" class="connection">● 本地工作空间</span></div>
+  <section id="view-chat" class="view chat-layout">
+    <div class="conversation">
+      <div class="conversation-toolbar"><div><span class="eyebrow">CUSTOMER CARE</span><div class="session-title" id="session-title">新的服务对话</div></div><button id="new-session" class="button secondary small">＋ 新会话</button></div>
+      <div id="chat-scroll" class="chat-scroll" aria-live="polite">
+        <div id="welcome" class="welcome"><div class="welcome-symbol">✳</div><span class="eyebrow">有问题，我们一起解决</span><h1>你好，需要什么帮助？</h1><p>咨询平台规则、查询订单，或发起售后。<br>遇到复杂问题，我们会为你转接人工处理。</p>
+          <div class="suggestions"><button data-prompt="平台退货规则是什么？"><span>▤</span><strong>了解平台规则</strong><small>从知识库获取有来源的回答 ↗</small></button><button data-prompt="查询订单202608090001的物流"><span>▣</span><strong>查看订单物流</strong><small>查询模拟订单与配送记录 ↗</small></button><button data-prompt="订单202609140001我要退货，商品未使用，原因是不想要了"><span>↻</span><strong>申请订单售后</strong><small>确认信息，再提交模拟申请 ↗</small></button><button data-prompt="我要人工客服"><span>◎</span><strong>联系人工客服</strong><small>保留当前上下文并转接 ↗</small></button></div>
+          <div class="welcome-footnote">LangGraph 工作流 · 工具调用 · 可信来源 · 人工介入</div>
+        </div>
+        <div id="messages" class="messages"></div>
+      </div>
+      <div id="human-banner" class="human-banner hidden"><span>◎</span><div><strong>人工客服已接手</strong><small id="human-banner-text">你可以继续补充信息。AI 不会擅自恢复待审核流程。</small></div></div>
+      <form id="chat-form" class="composer"><div id="activity" class="activity hidden"><span class="spinner"></span><span>正在处理…</span></div><div class="composer-inner"><textarea id="message-input" rows="2" maxlength="6000" placeholder="输入你的问题…  Enter 发送，Shift + Enter 换行" aria-label="输入问题"></textarea><button id="send-button" class="send-button" type="submit" aria-label="发送消息">↑</button></div><div class="composer-footer"><span><span class="tiny-dot"></span> 所有来源与处理阶段可在右侧查看</span><span id="char-count">0 / 6000</span></div></form>
+    </div>
+    <aside class="context-panel">
+      <div class="panel-heading"><h2>本次服务</h2><span class="pill subtle" id="domain-badge">综合客服</span></div>
+      <section class="context-section"><h3>处理路径 <span>WORKFLOW</span></h3><div class="workflow-rail"><div data-flow="triage" class="flow-step"><span>1</span><div><strong>会话与分诊</strong><small>读取状态，确认业务归属</small></div></div><div data-flow="agent" class="flow-step"><span>2</span><div><strong>专业服务</strong><small>综合客服 / 订单 / 售后</small></div></div><div data-flow="tool" class="flow-step"><span>3</span><div><strong>工具与规则</strong><small>检索事实，校验业务条件</small></div></div><div data-flow="finalize" class="flow-step"><span>4</span><div><strong>结果与人工协作</strong><small>确认回复，或等待人工</small></div></div></div></section>
+      <section class="context-section"><h3>实时记录 <span id="event-count">0</span></h3><div id="event-log" class="event-log empty">发送消息后，这里会显示实际执行阶段。</div></section>
+      <section class="context-section"><h3>参考来源</h3><div id="sources" class="source-list empty">当前暂无引用资料</div></section>
+      <section class="context-section hidden" id="case-panel"><h3>售后申请 <span>模拟</span></h3><div id="case-detail"></div><button id="confirm-case" class="button primary full hidden">确认提交模拟申请</button></section>
+      <section class="context-section"><div class="timing"><div><small>总耗时</small><strong id="total-time">—</strong></div><div><small>工具调用</small><strong id="tool-count">—</strong></div></div><div class="muted tiny" id="request-label">回复先验证后展示；阶段事件实时推送。</div></section>
+    </aside>
+  </section>
+  <section id="view-human" class="view page-view hidden"><div class="page-heading"><div><span class="eyebrow">HUMAN IN THE LOOP</span><h1>人工工作台</h1><p>认领工单、补充回复，并在审核后恢复工作流。</p></div><button id="refresh-tickets" class="button secondary">刷新工单</button></div><div class="human-grid"><div class="card"><div class="card-title">服务队列<select id="ticket-filter" aria-label="工单状态筛选"><option value="">全部状态</option><option value="pending">待处理</option><option value="claimed">已认领</option><option value="resolving">恢复中</option><option value="resolved">已完成</option></select></div><div id="tickets" class="ticket-list"><p class="empty">请先完成管理验证</p></div></div><div class="card ticket-workbench" id="ticket-workbench"><div class="large-empty"><span>◎</span><h2>选择一张工单</h2><p>审核内容来自持久化记录，不由模型决定审批结果。</p></div></div></div></section>
+  <section id="view-knowledge" class="view page-view hidden"><div class="page-heading"><div><span class="eyebrow">KNOWLEDGE LIBRARY</span><h1>知识库</h1><p>导入公开业务资料，检索结果附带可追溯来源。</p></div><button id="refresh-knowledge" class="button secondary">刷新</button></div><div class="knowledge-grid"><div class="card"><div class="card-title">文档管理<span id="generation" class="muted tiny"></span></div><form id="upload-form" class="upload-area"><span class="upload-icon">↥</span><strong>添加知识文档</strong><small>Markdown / TXT / PDF / DOCX · 最大 10 MB</small><input id="knowledge-file" type="file" accept=".md,.markdown,.txt,.pdf,.docx" required aria-label="选择知识文档"><button type="submit" class="button primary">导入并更新索引</button></form><div id="documents" class="document-list"></div><button id="rebuild-knowledge" class="button ghost full">从持久化文档重新构建检索索引</button></div><div class="card"><div class="card-title">检索调试<span class="pill subtle">只检索，不生成</span></div><form id="search-form" class="search-form"><input id="search-input" placeholder="例如：退货运费由谁承担？" maxlength="2000" required aria-label="检索查询"><button class="button primary">检索</button></form><div id="search-results" class="search-results empty">输入问题，查看融合结果、重排状态及来源。</div></div></div></section>
+  <section id="view-metrics" class="view page-view hidden"><div class="page-heading"><div><span class="eyebrow">OPERATIONS</span><h1>运行概览</h1><p>查看配置状态和本地运行数据。此页面不会显示模型密钥。</p></div><button id="refresh-metrics" class="button secondary">刷新数据</button></div><div id="metric-cards" class="metric-grid"></div><div class="card"><div class="card-title">当前运行配置</div><div id="runtime-config" class="config-grid"></div></div></section>
+</main>
+</div>
+<dialog id="admin-dialog"><form id="admin-form"><span class="eyebrow">STAFF ACCESS</span><h2>验证管理权限</h2><p>输入本项目的 ADMIN_API_KEY。不是模型 API Key。</p><label>管理密钥<input id="admin-token" type="password" autocomplete="off" required></label><small>仅在当前浏览器标签页保存，请勿在公共设备使用。</small><div class="dialog-actions"><button class="button secondary" type="button" data-close="admin-dialog">取消</button><button class="button primary">验证</button></div></form></dialog>
+<dialog id="account-dialog"><div><span class="eyebrow">LOCAL DEVELOPMENT</span><h2>切换演示身份</h2><p>不同身份不能读取彼此的会话或订单。</p><div class="account-options"><button class="button secondary" data-user="demo-customer">演示客户 A</button><button class="button secondary" data-user="demo-other">演示客户 B</button></div><p class="tiny muted">生产环境不开放演示登录，需要接入自己的身份服务。</p><button class="button ghost" data-close="account-dialog">取消</button></div></dialog>
+<div id="toast" class="toast hidden" role="status"></div>
+<script type="module" src="/static/app.js"></script>
+</body></html>
