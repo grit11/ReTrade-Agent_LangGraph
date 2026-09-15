@@ -1,4 +1,4 @@
-"""Storage ports. PostgreSQL adapters must implement these methods, not Graph internals."""
+"""存储端口定义；PostgreSQL 适配器应实现这些方法而非依赖工作流图内部结构。"""
 from typing import Any, Protocol
 from contextlib import AbstractAsyncContextManager
 

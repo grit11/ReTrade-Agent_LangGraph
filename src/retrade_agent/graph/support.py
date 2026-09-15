@@ -1,4 +1,4 @@
-"""Parent workflow owns routing and handoff. It never calls Milvus/SQL directly."""
+"""父工作流负责路由和业务转交，不直接调用 Milvus 或 SQL。"""
 import json
 from langgraph.graph import StateGraph, START, END
 from langgraph.types import interrupt

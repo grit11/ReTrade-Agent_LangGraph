@@ -1,4 +1,4 @@
-"""Reciprocal Rank Fusion with within-list de-duplication and stable tie ordering."""
+"""倒数排名融合模块，支持列表内去重和稳定的同分排序。"""
 
 
 def reciprocal_rank_fusion(rankings: list[list[str]], top_k: int, k: int = 60) -> list[tuple[str, float]]:

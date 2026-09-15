@@ -1,6 +1,7 @@
-"""BM25 design migrated from ReTrade_V2; rewritten, dependency-injectable tokenizer.
-Uses positive IDF smoothing. In a full install segmentation is jieba; the built-in
-bigram fallback only keeps minimal unit tests/imports usable without that dependency.
+"""从 ReTrade_V2 迁移并重写的 BM25，分词器支持依赖注入。
+
+算法使用正值 IDF 平滑；完整安装时使用 jieba 分词，内置二元分词回退仅用于
+在缺少该依赖时维持最小单元测试和模块导入能力。
 """
 import math
 import re

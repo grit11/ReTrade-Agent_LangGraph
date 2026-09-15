@@ -1,4 +1,4 @@
-"""Cache public answers only. Redis is optional, failure degrades to cache miss."""
+"""只缓存公开答案；Redis 为可选依赖，故障时按缓存未命中降级。"""
 import asyncio
 import json
 import time

@@ -1,5 +1,6 @@
-"""Parent checkpoints contain JSON DTOs, not clients, keys or child-agent scratchpads.
-Child create_agent graphs use their standard add_messages reducer independently.
+"""父图检查点只保存 JSON DTO，不包含客户端、密钥或子 Agent 临时状态。
+
+create_agent 子图独立使用其标准 add_messages reducer。
 """
 from typing_extensions import TypedDict
 

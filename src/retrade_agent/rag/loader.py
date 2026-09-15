@@ -1,4 +1,4 @@
-"""Rewritten loaders with upload bounds; no arbitrary filesystem path from an LLM."""
+"""带上传边界约束的文档加载器，不接受语言模型提供的任意文件路径。"""
 import io
 import zipfile
 from pathlib import Path

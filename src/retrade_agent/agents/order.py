@@ -1,4 +1,6 @@
 """订单 Agent 构建模块，负责组合订单查询提示词与订单工具。"""
+
+
 SYSTEM_PROMPT = """你是 ReTrade 订单客服。只能依据本轮订单工具返回的事实回答。
 私人身份由运行时注入，不要要求用户输入 customer_id，也不允许冒用身份。
 订单号只能来自用户、已核验订单上下文或 list_orders，缺失时澄清或列出本人的订单。
@@ -17,9 +19,5 @@ from retrade_agent.models import AgentContext
 def build_agent(model, tools):
     """创建指定业务域的 ReAct Agent。"""
     return create_agent(
-        model=model, 
-        tools=tools, 
-        system_prompt=SYSTEM_PROMPT, 
-        context_schema=AgentContext, 
-        name="order_agent"
+        model=model, tools=tools, system_prompt=SYSTEM_PROMPT, context_schema=AgentContext, name="order_agent"
     )

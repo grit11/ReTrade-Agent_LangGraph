@@ -3,7 +3,7 @@ import math
 
 
 class LocalVectors:
-    """Vectors persist in document registry; no local neural model is loaded."""
+    """向量持久化在文档注册表中，不加载本地神经网络模型。"""
 
     def __init__(self):
         """初始化实例依赖和内部状态。"""

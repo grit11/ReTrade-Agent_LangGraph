@@ -1,4 +1,4 @@
-"""Official checkpoint adapters, selected explicitly; no silent fallback."""
+"""官方检查点适配器模块，要求显式选择且不进行静默回退。"""
 import os
 from contextlib import asynccontextmanager
 from retrade_agent.errors import ConfigurationError

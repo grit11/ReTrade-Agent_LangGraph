@@ -1,5 +1,6 @@
-"""return_direct ends the child agent. Parent validates and executes the handoff.
-No Tool Command writes simultaneously into the parent's scalar state.
+"""子 Agent 通过 return_direct 结束执行，由父图校验并执行业务转交。
+
+工具命令不会并发写入父图的标量状态。
 """
 import json
 from langchain.tools import tool

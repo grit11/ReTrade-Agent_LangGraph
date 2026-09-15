@@ -1,4 +1,4 @@
-"""Public contracts, with no FastAPI/LangGraph/storage imports."""
+"""公共数据合同模块，不依赖 FastAPI、LangGraph 或存储实现。"""
 from dataclasses import dataclass
 from enum import StrEnum
 from typing import Literal

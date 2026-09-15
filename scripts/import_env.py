@@ -1,5 +1,6 @@
-"""Import LOCAL credentials; no secrets are echoed or fetched from GitHub.
-python scripts/import_env.py --source ../ReTrade_V2/.env --force
+"""导入本地凭据，不回显密钥，也不从 GitHub 获取内容。
+
+用法：python scripts/import_env.py --source ../ReTrade_V2/.env --force
 """
 import argparse
 import os

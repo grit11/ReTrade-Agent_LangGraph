@@ -1,4 +1,4 @@
-"""Admin HTTP ingest: server must already be running. No legacy project imports."""
+"""通过管理接口导入知识文档，要求服务已运行且不读取旧项目。"""
 import argparse
 import os
 from pathlib import Path

@@ -1,4 +1,4 @@
-"""Heading-aware chunking, deterministic IDs and source links."""
+"""感知标题的文本分块模块，生成确定性标识和来源链接。"""
 import hashlib
 import re
 from retrade_agent.rag.schemas import Chunk

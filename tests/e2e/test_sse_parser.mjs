@@ -1,3 +1,5 @@
+// SSE/API 解析器回归测试，使用本地 Fetch 替身覆盖分片、缺失回执和错误响应。
+
 import assert from 'node:assert/strict';
 import {streamChat,api} from '../../frontend/api.js';
 const encoder=new TextEncoder();

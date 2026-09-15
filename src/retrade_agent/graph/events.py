@@ -1,4 +1,4 @@
-"""Safe operational events only. Never emit raw model prompts, secrets or reasoning."""
+"""仅发送安全的运行事件，不输出原始模型提示、密钥或推理内容。"""
 
 
 def emit(event_type, **fields):

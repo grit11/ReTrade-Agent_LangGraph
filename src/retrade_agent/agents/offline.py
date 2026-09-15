@@ -1,6 +1,7 @@
-"""Explicit scripted test model. It is NOT a language model and is never used in live mode.
-It emits real AIMessage.tool_calls so offline runs still execute create_agent/ToolNode
-and the real Parent Graph. Test behavior does not prove online model answer quality.
+"""显式脚本化测试模型，不是真实语言模型，也不会用于实时模式。
+
+该模型生成真实 AIMessage.tool_calls，使离线运行仍经过 create_agent、ToolNode
+和真实父图；其测试表现不代表在线模型的回答质量。
 """
 import json
 import re

@@ -1,4 +1,4 @@
-"""Deterministic MOCK policy and idempotent MOCK application creation. No money API."""
+"""确定性的模拟售后策略与幂等申请创建，不调用真实资金接口。"""
 import hashlib
 import json
 from datetime import datetime, timezone

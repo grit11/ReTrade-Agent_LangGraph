@@ -1,5 +1,6 @@
-"""Native PyMilvus adapter, independent of old langchain-milvus versions.
-A dedicated collection + active generation isolates this project and stale chunks.
+"""原生 PyMilvus 适配器，不依赖旧版 langchain-milvus。
+
+通过专用集合和活动 generation 隔离本项目数据与过期分块。
 """
 import asyncio
 import re

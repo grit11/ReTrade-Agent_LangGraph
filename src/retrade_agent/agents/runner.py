@@ -1,5 +1,6 @@
-"""Wrap create_agent subgraphs with input/output adapters and evidence checks.
-Only the public reply and verified tool artifacts leave the child graph.
+"""使用输入输出适配和证据检查封装 create_agent 子图。
+
+只有公开回复和经过验证的工具结果可以离开子图。
 """
 import hashlib
 import json

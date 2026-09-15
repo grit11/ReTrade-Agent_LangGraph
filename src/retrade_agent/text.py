@@ -1,4 +1,4 @@
-"""Small deterministic input guard, not model-based authorization."""
+"""轻量且确定性的输入判断工具，不承担基于模型的权限校验。"""
 GREETINGS = {"你好", "您好", "hi", "hello", "谢谢", "谢谢你", "再见", "早上好", "晚上好"}
 
 

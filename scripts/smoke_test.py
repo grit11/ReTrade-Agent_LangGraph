@@ -1,4 +1,4 @@
-"""Real running service smoke test. Uses configured mode; live mode incurs provider calls."""
+"""对运行中的真实服务执行冒烟测试；实时模式会调用模型供应商。"""
 import argparse
 import uuid
 import httpx

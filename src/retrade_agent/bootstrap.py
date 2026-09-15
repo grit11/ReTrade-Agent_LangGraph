@@ -1,4 +1,4 @@
-"""Composition root: the only layer that knows all concrete adapters."""
+"""应用组合根，是唯一了解全部具体适配器的模块。"""
 import json
 from contextlib import AsyncExitStack, asynccontextmanager
 from dataclasses import dataclass

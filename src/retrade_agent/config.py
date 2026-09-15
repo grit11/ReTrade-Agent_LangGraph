@@ -1,4 +1,4 @@
-"""Configuration is injected once; credentials are never placed in Graph state."""
+"""应用配置集中注入一次，凭据不会进入工作流图状态。"""
 import json
 from pathlib import Path
 from typing import Literal

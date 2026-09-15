@@ -1,5 +1,6 @@
-"""Use-case facade shared by JSON and SSE APIs. No second chat execution path.
-Requests and resumes are serialized per session; receipts are durable and idempotent.
+"""JSON 与 SSE 接口共用的用例门面，不存在第二条聊天执行路径。
+
+请求和恢复操作按会话串行执行，处理回执持久化且满足幂等要求。
 """
 import asyncio
 import hashlib
@@ -162,8 +163,9 @@ class WorkflowService:
         await self.c.repo.finish_run(result["request_id"], result)
 
     async def events(self, actor, session_id, message, request_id):
-        """Yield live operational events; release answer only after domain/evidence checks.
-        The final token event is buffered, not falsely advertised as live model tokens.
+        """持续生成运行事件，并仅在业务域和证据检查完成后返回答案。
+
+        最终 token 事件经过缓冲，不会被错误标记为实时模型 token。
         """
         start = time.perf_counter()
         repo = self.c.repo

@@ -1,4 +1,4 @@
-"""Live models retain the original provider endpoint/model/key variables."""
+"""实时模型工厂，沿用原有供应商地址、模型和密钥配置变量。"""
 import json
 import httpx
 from langchain_openai import ChatOpenAI

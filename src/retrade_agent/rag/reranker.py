@@ -1,4 +1,4 @@
-"""No local CrossEncoder, torch, transformers, or model download fallback."""
+"""远程重排模块，不回退到本地 CrossEncoder、torch、transformers 或模型下载。"""
 import math
 import httpx
 from retrade_agent.storage.clients import request_json

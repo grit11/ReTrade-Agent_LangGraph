@@ -4,7 +4,7 @@ from retrade_agent.models import Actor
 
 
 class PermissionService:
-    """Ownership always checked, even with local demo identities."""
+    """权限校验服务，即使使用本地演示身份也始终检查资源归属。"""
 
     def require_owner(self, actor: Actor, customer_id: str):
         """校验访问者是否为指定客户本人或员工。"""

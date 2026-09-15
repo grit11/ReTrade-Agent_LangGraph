@@ -1,4 +1,4 @@
-"""Offline source/data integrity check; never calls provider APIs."""
+"""离线检查源码与数据完整性，执行期间不会调用模型供应商接口。"""
 import ast
 import hashlib
 from pathlib import Path

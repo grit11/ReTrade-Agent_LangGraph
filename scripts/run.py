@@ -1,4 +1,4 @@
-"""Run from any working directory: python scripts/run.py [--port 8000]."""
+"""从任意工作目录启动服务：python scripts/run.py [--port 8000]。"""
 import argparse
 import os
 import sys

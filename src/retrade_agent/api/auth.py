@@ -1,5 +1,6 @@
-"""Local demo identities use signed tokens. Replace authenticate() with your IdP later.
-Never accept customer_id from tool arguments or from a chat request body.
+"""本地演示身份使用签名令牌，后续可将 authenticate() 替换为正式身份服务。
+
+任何情况下都不从工具参数或聊天请求正文接收 customer_id。
 """
 import base64
 import hashlib

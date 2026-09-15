@@ -1,7 +1,7 @@
-"""Local durable repository. Short transactions run off the event loop.
+"""本地持久化仓储，短事务在事件循环之外执行。
 
-Only application records live here. LangGraph owns its separate checkpoints.sqlite.
-JSON records make the PostgreSQL port straightforward (JSONB + identical DTOs).
+此处只保存应用记录；LangGraph 独立管理 checkpoints.sqlite。JSON 记录使
+PostgreSQL 端口可直接采用 JSONB 和相同 DTO 实现。
 """
 import asyncio
 import json
@@ -368,7 +368,7 @@ class SqliteRepository:
 
     @asynccontextmanager
     async def lease(self, session_id, ttl=240):
-        """One active run per session across local processes. Bounded request < lease TTL."""
+        """限制本地进程间每个会话仅有一个活动任务，且请求时限小于租约有效期。"""
         owner = str(uuid.uuid4())
 
         def acquire(c):

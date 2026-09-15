@@ -1,4 +1,4 @@
-"""Read-only local configuration/dependency checks; never opens external connections."""
+"""只读检查本地配置与依赖，不建立任何外部连接。"""
 import importlib.metadata as meta
 import json
 import os

@@ -1,4 +1,4 @@
-"""Bounded retries only for idempotent reads/inference, never arbitrary money actions."""
+"""仅对幂等读取和推理执行有限重试，不重试任意资金操作。"""
 import asyncio
 import random
 import httpx

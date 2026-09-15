@@ -1,4 +1,4 @@
-"""App factory + lifespan, with same-origin redesigned frontend. No business logic here."""
+"""应用工厂与生命周期模块，挂载同源前端且不包含业务逻辑。"""
 import logging
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request, Depends
