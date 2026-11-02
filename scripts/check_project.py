@@ -25,7 +25,7 @@ def main():
             if FORBIDDEN.intersection(modules) or "app" in modules:
                 problems.append(str(path.relative_to(ROOT)) + ": forbidden runtime import")
     expected = {
-        "resources/knowledge/knowledge_base.md": "b5e63dc90222519a1ad54a672322b6c923ef8c6e",
+        "resources/knowledge/knowledge_base.txt": "b5e63dc90222519a1ad54a672322b6c923ef8c6e",
         "eval/datasets/qa.jsonl": "f760b8c8023a31f68dd766a5c37c8c8d528b065d",
     }
     for name, digest in expected.items():

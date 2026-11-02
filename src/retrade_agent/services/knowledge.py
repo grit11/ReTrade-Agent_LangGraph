@@ -23,7 +23,10 @@ class KnowledgeService:
     async def initialize(self, seed_dir: Path):
         """初始化种子知识并确保索引可用。"""
         if not await self.repo.knowledge():
-            for path in sorted(seed_dir.glob("*.md")):
+            # 发布包使用 TXT；继续兼容本地现有 Markdown，避免同名种子重复入库。
+            seeds = {path.stem: path for path in sorted(seed_dir.glob("*.md"))}
+            seeds.update({path.stem: path for path in sorted(seed_dir.glob("*.txt"))})
+            for path in sorted(seeds.values()):
                 await self.ingest(path.name, path.read_bytes())
         else:
             await self.rebuild()

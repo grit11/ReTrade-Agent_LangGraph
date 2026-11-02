@@ -75,7 +75,7 @@ def test_bm25():
 
 def test_preserved_knowledge_source():
     """验证内置知识源文件内容保持预期版本。"""
-    data = (PROJECT_ROOT / "resources/knowledge/knowledge_base.md").read_bytes()
+    data = (PROJECT_ROOT / "resources/knowledge/knowledge_base.txt").read_bytes()
     assert (
         hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
         == "b5e63dc90222519a1ad54a672322b6c923ef8c6e"
@@ -120,7 +120,7 @@ async def test_knowledge_dedup_restart_generation(settings, repo):
         before = knowledge.retriever.generation
         r = await knowledge.search("退货规则")
         assert r.evidence_found and r.sources and r.detail["rerank"]["applied"] is False
-        p = PROJECT_ROOT / "resources/knowledge/knowledge_base.md"
+        p = PROJECT_ROOT / "resources/knowledge/knowledge_base.txt"
         duplicate = await knowledge.ingest(p.name, p.read_bytes())
         assert duplicate["deduplicated"]
         assert before == knowledge.retriever.generation

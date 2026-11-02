@@ -5,7 +5,7 @@ import re
 
 def validate_all():
     counts = {}
-    kb = norm((ROOT / "resources/knowledge/knowledge_base.md").read_text(encoding="utf-8-sig"))
+    kb = norm((ROOT / "resources/knowledge/knowledge_base.txt").read_text(encoding="utf-8-sig"))
     for file in ["knowledge.jsonl", "orders.jsonl", "workflows.jsonl", "reliability.jsonl"]:
         rows = read_jsonl(DATA / file)
         ids = [r["id"] for r in rows]

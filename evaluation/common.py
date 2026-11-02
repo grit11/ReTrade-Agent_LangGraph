@@ -153,7 +153,7 @@ def metadata(args, settings=None, dataset=None):
             for k in ["llm_base_url", "embedding_base_url", "rerank_base_url"]
         }
         info["llm_extra_body_sha256"] = hashlib.sha256(settings.llm_extra_body.encode()).hexdigest()
-    kb = ROOT / "resources/knowledge/knowledge_base.md"
+    kb = ROOT / "resources/knowledge/knowledge_base.txt"
     if kb.exists():
         info["knowledge_sha256"] = digest(kb)
     return info

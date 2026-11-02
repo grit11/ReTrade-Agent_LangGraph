@@ -19,3 +19,7 @@ node_modules/
 /VALIDATION.md
 /RELEASE_MANIFEST.json
 /evaluation/reports/
+
+# GitHub 仅发布根目录项目说明；其他 Markdown 留在本地。
+*.md
+!/README.md

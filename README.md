@@ -329,7 +329,7 @@ $result | ConvertTo-Json -Depth 10
 
 </details>
 
-截图生成说明见 [docs/preview/README.md](docs/preview/README.md)。
+以上截图使用实际前端与离线 API 夹具生成。
 
 ## Docker 部署
 
@@ -342,7 +342,7 @@ docker compose logs -f retrade
 
 Compose 启动应用与 Redis，默认通过 [http://127.0.0.1:8000](http://127.0.0.1:8000) 访问。业务运行目录与 Redis 数据分别写入命名卷，模型服务和 Milvus 需要自行配置。
 
-默认部署采用单个 Uvicorn worker 和 SQLite。正式环境需要接入真实身份服务、配置 HTTPS 与业务后端，并更换开发密钥；`APP_ENV=prod` 会禁用演示登录，要求 `live` 模式、至少 32 字符的随机 `AUTH_SECRET` 和至少 24 字符的管理员密钥。安全设计见 [docs/SECURITY.md](docs/SECURITY.md)。
+默认部署采用单个 Uvicorn worker 和 SQLite。正式环境需要接入真实身份服务、配置 HTTPS 与业务后端，并更换开发密钥；`APP_ENV=prod` 会禁用演示登录，要求 `live` 模式、至少 32 字符的随机 `AUTH_SECRET` 和至少 24 字符的管理员密钥。订单归属由业务服务校验，人工处理同时校验权限、工单类型、版本和决策指纹；真实支付系统仍需单独实现授权、幂等和审计。
 
 ## 测试与评估
 
@@ -390,9 +390,9 @@ python evaluation/run.py load --requests 20 --concurrency 4 --out evaluation/rep
 python -m pytest evaluation/tests -q
 ```
 
-每套评估输出 JSON、JSONL 与 Markdown 报告，`--out` 指定输出目录。真实模型评估需显式传入 `--mode live --allow-live`；Judge / RAGAS 使用独立评分配置与可选依赖，详见 [评估工具说明](evaluation/README.md)。
+每套评估输出 JSON、JSONL 与 Markdown 报告，`--out` 指定输出目录。真实模型评估需显式传入 `--mode live --allow-live`；Judge / RAGAS 使用独立评分配置与可选依赖。评估 CLI 的全部参数可通过 `python evaluation/run.py --help` 和各子命令的 `--help` 查看。
 
-仓库中的离线报告用于实现回归，规则命中率不等同于回答准确率，合成业务数据也不代表实际业务收益。评估数据、历史报告及其适用范围均在评估目录中说明，当前代码的结果应通过重新执行获得。
+评估数据位于 `evaluation/data/`，是基于项目政策与模拟订单构造的初始标注集，仍需业务人员复核。离线模式用于实现回归，规则命中率不等同于回答准确率，合成业务数据也不代表实际业务收益。生成报告保存在本地，不纳入 Git；当前代码的结果应通过重新执行获得。
 
 ## 项目结构与源码导读
 
@@ -416,9 +416,9 @@ ReTrade-Agent_LangGraph/
 ├── resources/knowledge/     # 初始知识库
 ├── scripts/                 # 启动、诊断、知识导入等脚本
 ├── tests/                   # 单元、集成、图运行与前端测试
-├── evaluation/              # 五层评估工具、数据与报告
+├── evaluation/              # 五层评估工具与数据，生成报告仅保存在本地
 ├── eval/                    # 基础检索回归脚本与数据
-├── docs/                    # 架构、安全、设计决策与预览资料
+├── docs/preview/             # 界面预览图片
 ├── .github/workflows/       # 离线 CI
 ├── .env.example             # 环境变量模板
 ├── docker-compose.yml       # 应用与 Redis 编排
