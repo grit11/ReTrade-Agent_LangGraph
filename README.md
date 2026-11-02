@@ -367,6 +367,23 @@ python -m pytest tests/integration/test_postgres.py -q
 Remove-Item Env:RETRADE_TEST_POSTGRES_DSN
 ```
 
+### 52 题 RAG 专项评估
+
+`eval/run_eval.py` 基于原有 52 条知识问答集执行“检索 → 回答生成 → 独立 Judge → RAGAS 四指标”，使用当前项目的混合检索与生成模型。该评估使用临时 SQLite 和进程内向量索引，不连接业务数据库；它不覆盖客服分诊、订单或售后工作流。
+
+```bash
+pip install -r evaluation/requirements-ragas.txt
+python eval/run_eval.py --allow-live --limit 2 --out eval/reports/rag52_smoke.json
+python eval/run_eval.py --allow-live --out eval/reports/rag52_full.json
+python eval/run_eval.py --allow-live --out eval/reports/rag52_full.json --resume
+```
+
+生成与检索读取本地 `.env`；Judge / RAGAS 读取 `evaluation/.env.eval` 中的 `EVAL_JUDGE_API_KEY`、`EVAL_JUDGE_BASE_URL`、`EVAL_JUDGE_MODEL`、`EVAL_EMBEDDING_API_KEY`、`EVAL_EMBEDDING_BASE_URL`、`EVAL_EMBEDDING_MODEL`。配置和报告均保存在本地且被 Git 忽略。可用 `--no-ragas`、`--no-judge` 关闭对应评分，`--top-k` 修改召回条数。
+
+每题生成及评分后保存 JSON 检查点，同时输出 JSONL 和 Markdown 报告，保留回答、参考答案、检索片段、来源、耗时、用量及失败类型。续跑复用已有回答和成功评分，只重试未完成步骤；必须保持原题集、提示词与模型配置一致。
+
+52 题中，47 道有答案题参与关键词检索代理指标及 RAGAS，5 道无答案题单独通过 Judge 检查资料边界。Judge 从正确性、完整性、相关性、依据充分性四个维度打 1–5 分，整体分为四维均值；关键词命中不等同于回答准确率。所有均值均同时报告有效评分覆盖率。
+
 ### 五层评估
 
 评估工具直接调用项目的知识服务和工作流，记录实际工具轨迹，并将答案生成与质量评分分开执行。
