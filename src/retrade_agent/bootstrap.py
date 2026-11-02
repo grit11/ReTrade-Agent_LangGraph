@@ -1,4 +1,9 @@
-"""应用组合根，是唯一了解全部具体适配器的模块。"""
+"""应用组合根，是唯一了解全部具体适配器的模块。
+build_container() 把这些对象组装起来：先创建仓储、知识/订单/售后/人工服务，
+再创建模型和工具，接着构建两个 Agent、售后子图、父图，
+最后执行 WorkflowService(c, graph)。
+build_agent()、build_parent()、build_after_sales() 主要在启动时组装对象，不是每条消息都重新创建。
+"""
 import json
 from contextlib import AsyncExitStack, asynccontextmanager
 from dataclasses import dataclass
@@ -41,6 +46,8 @@ async def build_container(settings: Settings):
             from retrade_agent.storage.postgres import create_postgres_repository
 
             repo = create_postgres_repository(settings)
+            await repo.open()
+            stack.push_async_callback(repo.close)
         else:
             repo = SqliteRepository(settings.data_dir / "business.sqlite")
         await repo.setup(
@@ -96,6 +103,8 @@ async def build_container(settings: Settings):
         runner = AgentRunner(settings, agents, cache, knowledge)
         subgraph = build_after_sales(models, orders, after_sales_service, human)
         graph = build_parent(settings, models, runner, subgraph, human, saver)
+        # bootstrap.py 就是整个应用的组合根（Composition Root），它把所有模块实例化并组装好，
+        # API 层通过 app.state.container 来使用。
         c = Container(
             settings,
             repo,

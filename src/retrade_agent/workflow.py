@@ -66,8 +66,7 @@ class WorkflowService:
         """驱动图执行并持续产出阶段事件或最终结果。"""
         config = self.config(session_id)
         interrupts = []
-        async for item in self.graph.astream(
-            input_value, config=config, stream_mode=["updates", "custom"], subgraphs=True
+        async for item in self.graph.astream(input_value, config=config, stream_mode=["updates", "custom"], subgraphs=True
         ):
             if len(item) == 3:
                 namespace, mode, data = item

@@ -18,7 +18,10 @@ def create_app(settings: Settings | None = None, container=None):
 
     @asynccontextmanager
     async def lifespan(app):
-        """管理应用生命周期中的容器创建和释放。"""
+        """管理应用生命周期中的容器创建和释放。
+        生命周期管理（lifespan）：启动时通过 build_container(settings)
+        创建依赖注入容器（包含 workflow、repo、knowledge 等所有业务模块），
+        挂到 app.state.container 上，关闭时自动释放资源。"""
         if container is not None:
             app.state.container = container
             yield
@@ -28,7 +31,7 @@ def create_app(settings: Settings | None = None, container=None):
             async with build_container(settings) as c:
                 app.state.container = c
                 yield
-
+    #（创建实例）
     app = FastAPI(title="ReTrade Agent · LangGraph", version="0.1.0", lifespan=lifespan)
 
     @app.exception_handler(AppError)
@@ -110,7 +113,8 @@ def create_app(settings: Settings | None = None, container=None):
     async def stats(actor=Depends(require_staff)):
         """统计仓库中的主要业务记录数量。"""
         return await app.state.container.repo.stats()
-
+    #include_router 的效果：把子模块 router 上定义的所有路由，合并到主 app 的路由表中。
+    # 最终等价于你在 app.py 里直接写了这些端点。
     app.include_router(chat.router)
     app.include_router(human.router)
     app.include_router(knowledge.router)
@@ -126,3 +130,32 @@ def create_app(settings: Settings | None = None, container=None):
 
 
 app = create_app()
+
+
+"""
+uvicorn retrade_agent.api.app:app
+        │
+        ▼
+    加载 app.py 模块级代码
+        │
+        ▼
+    执行 app = create_app()
+        │
+        ├── 1. 定义 lifespan（生命周期管理）
+        ├── 2. app = FastAPI(lifespan=...)（创建实例）
+        ├── 3. 注册异常处理器
+        ├── 4. 注册安全中间件
+        ├── 5. 注册顶层端点（/health, /auth/demo, /auth/me, /orders, /stats）
+        ├── 6. import chat, human, knowledge（加载子模块，创建各自的 router）
+        ├── 7. app.include_router(chat.router)    ← 路由合并
+        │   app.include_router(human.router)       ← 路由合并
+        │   app.include_router(knowledge.router)   ← 路由合并
+        ├── 8. 挂载静态文件 /static
+        └── 9. return app
+        │
+        ▼
+    uvicorn 拿到 app 实例，开始监听端口
+        │
+        ▼
+    请求进来 → FastAPI 路由表匹配 → 调用对应处理函数 → 返回 JSON
+"""

@@ -27,6 +27,8 @@ class Settings(BaseSettings):
     checkpoint_backend: Literal["sqlite", "postgres"] = "sqlite"
     auth_secret: SecretStr = SecretStr("dev-only-retrade-signing-secret-change-me")
     admin_api_key: SecretStr = SecretStr("dev-admin-change-me")
+
+    # LLM 配置
     llm_base_url: str = Field(
         default="https://api.deepseek.com/v1",
         validation_alias=AliasChoices("AIROBOT_LLM_BASE_URL", "LLM_BASE_URL"),
@@ -43,6 +45,8 @@ class Settings(BaseSettings):
         default="function_calling", validation_alias="AIROBOT_STRUCTURED_OUTPUT_METHOD"
     )
     llm_extra_body: str = Field(default="{}", validation_alias="AIROBOT_LLM_EXTRA_BODY")
+
+    # 嵌入模型配置
     embedding_base_url: str = Field(
         default="https://api.siliconflow.cn/v1",
         validation_alias=AliasChoices("AIROBOT_EMBEDDING_BASE_URL", "EMBEDDING_BASE_URL"),
@@ -53,6 +57,8 @@ class Settings(BaseSettings):
     embedding_api_key: SecretStr = Field(
         default=SecretStr(""), validation_alias=AliasChoices("AIROBOT_EMBEDDING_API_KEY", "EMBEDDING_API_KEY")
     )
+
+    # 重排序模型配置
     rerank_enabled: bool = Field(default=True, validation_alias="AIROBOT_RERANK_ENABLED")
     rerank_provider: Literal["siliconflow"] = Field(
         default="siliconflow", validation_alias="AIROBOT_RERANK_PROVIDER"
@@ -64,6 +70,8 @@ class Settings(BaseSettings):
     rerank_api_key: SecretStr = Field(default=SecretStr(""), validation_alias="AIROBOT_RERANK_API_KEY")
     siliconflow_api_key: SecretStr = Field(default=SecretStr(""), validation_alias="SILICONFLOW_API_KEY")
     rerank_timeout: float = Field(default=15, gt=0, validation_alias="AIROBOT_RERANK_TIMEOUT")
+
+    # 向量数据库配置
     vector_store: Literal["local", "inmemory", "milvus"] = Field(
         default="local", validation_alias="AIROBOT_VECTOR_STORE"
     )
@@ -73,6 +81,8 @@ class Settings(BaseSettings):
         default="retrade_langgraph_kb", validation_alias="AIROBOT_MILVUS_COLLECTION"
     )
     milvus_reset: bool = Field(default=False, validation_alias="AIROBOT_MILVUS_RESET_ON_START")
+
+    # RAG 配置
     top_k: int = Field(default=5, ge=1, le=20, validation_alias="AIROBOT_TOP_K")
     chunk_size: int = Field(default=500, ge=100, le=2000, validation_alias="AIROBOT_CHUNK_SIZE")
     chunk_overlap: int = Field(default=80, ge=0, validation_alias="AIROBOT_CHUNK_OVERLAP")

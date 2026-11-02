@@ -13,3 +13,9 @@ eval/reports/
 artifacts/
 node_modules/
 .DS_Store
+
+# 本地交付记录、README 备份与生成的评估报告不发布。
+/README(*).md
+/VALIDATION.md
+/RELEASE_MANIFEST.json
+/evaluation/reports/

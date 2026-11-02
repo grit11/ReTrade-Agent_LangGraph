@@ -14,7 +14,7 @@
 | BM25 + RRF + vector | rag/ + infrastructure/vectorstore | 新实现，local/Milvus 可切换 |
 | SiliconFlow 重排 | rag/rerank/siliconflow.py | 只接远程 API；失败标明降级 |
 | 持久化 | SQLite repo + 官方 SQLite saver | 本轮默认；支持进程重启恢复 |
-| PostgreSQL | StoragePort / optional saver | 按用户要求预留，业务实现待接入 |
+| PostgreSQL | StoragePort / `PostgresRepository` / optional saver | 已实现业务 JSONB 仓储与 LangGraph 检查点适配；需安装 `.[postgres]` |
 | Redis | infrastructure/cache/cache.py | 可选缓存/限流，未配置使用本地 TTL |
 | 权限 | api/auth.py + PermissionService | 开发签名身份、订单归属、工单管理令牌 |
 | 真实资金操作 | AfterSalesService | **不实现**；只创建幂等模拟申请 |

@@ -1,0 +1,9 @@
+.env.eval
+__pycache__/
+.pytest_cache/
+reports/latest/
+reports/live/
+reports/scored/
+reports/business/
+reports/review/
+reports/compare/

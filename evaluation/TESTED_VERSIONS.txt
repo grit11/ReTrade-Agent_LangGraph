@@ -1,0 +1,23 @@
+Tested 2026-09-16; Linux; Python 3.12.14
+Project commit b9231b494986d76836d45495c243f8205a526fb1
+This is an environment record, not a replacement for pyproject.toml.
+
+langchain==1.2.18
+langgraph==1.1.10
+langchain-core==1.6.3
+langchain-openai==1.2.1
+langgraph-checkpoint==4.2.0
+langgraph-checkpoint-sqlite==3.1.1
+pydantic==2.13.5
+pydantic-settings==2.15.0
+fastapi==0.141.1
+httpx==0.28.1
+ragas==0.4.3
+langchain-community==0.3.31
+instructor==1.17.0
+openai==2.54.0
+numpy==2.5.3
+datasets==5.0.1
+pytest==9.1.1
+pytest-asyncio==1.4.0
+ruff==0.16.7

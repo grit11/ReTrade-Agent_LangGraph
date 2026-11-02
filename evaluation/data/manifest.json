@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "knowledge_cases": 72,
+  "order_answer_cases": 12,
+  "workflow_scenarios": 32,
+  "workflow_actions": 62,
+  "reliability_scenarios": 16,
+  "business_demo_sessions": 12,
+  "label_status": "Repository-grounded starter labels; domain owner review required before release gates.",
+  "production_records": 0
+}

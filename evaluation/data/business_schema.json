@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "One ReTrade business evaluation session",
+  "type": "object",
+  "required": ["session_id", "customer_hash", "issue_id", "category", "started_at", "ended_at", "resolved", "resolution_source", "handoff", "handoff_required", "technical_failure", "synthetic"],
+  "properties": {
+    "session_id": {"type": "string", "minLength": 1},
+    "customer_hash": {"type": "string", "minLength": 1, "description": "Stable de-identified customer identifier, consistent across channels"},
+    "issue_id": {"type": "string", "minLength": 1, "description": "Same issue must retain the same id on repeat contacts"},
+    "category": {"type": "string", "minLength": 1},
+    "started_at": {"type": "string", "format": "date-time"},
+    "ended_at": {"type": ["string", "null"], "format": "date-time"},
+    "resolved": {"type": ["boolean", "null"]},
+    "resolution_source": {"enum": ["customer_confirmed", "business_receipt", "human_review", "unknown"]},
+    "handoff": {"type": "boolean"},
+    "handoff_required": {"type": ["boolean", "null"]},
+    "technical_failure": {"type": ["boolean", "null"]},
+    "csat": {"type": ["integer", "null"], "minimum": 1, "maximum": 5},
+    "latency_ms": {"type": ["number", "null"], "minimum": 0},
+    "cost_usd": {"type": ["number", "null"], "minimum": 0},
+    "synthetic": {"type": "boolean"}
+  },
+  "description": "Informational schema; business.py enforces timestamp, duplicate, finite-number and evidence-source constraints. No labels are inferred from assistant claims."
+}

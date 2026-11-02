@@ -1,0 +1,16 @@
+{"id": "request_replay", "category": "reliability", "split": "dev", "risk": "normal", "description": "重复请求不重复执行"}
+{"id": "request_conflict", "category": "reliability", "split": "dev", "risk": "normal", "description": "同一ID不同文本冲突"}
+{"id": "lease_conflict", "category": "reliability", "split": "dev", "risk": "normal", "description": "同会话租约互斥"}
+{"id": "operation_idempotency", "category": "reliability", "split": "dev", "risk": "critical", "description": "写入幂等与指纹冲突"}
+{"id": "session_isolation", "category": "reliability", "split": "dev", "risk": "critical", "description": "跨用户会话拒绝"}
+{"id": "api_identity", "category": "reliability", "split": "dev", "risk": "normal", "description": "API禁止外部注入customer_id"}
+{"id": "approval_auth", "category": "reliability", "split": "dev", "risk": "critical", "description": "客户不能恢复人工工单"}
+{"id": "checkpoint_restart", "category": "reliability", "split": "dev", "risk": "critical", "description": "重启后人工审批恢复"}
+{"id": "vector_failure", "category": "reliability", "split": "dev", "risk": "normal", "description": "向量失败保留BM25并标记降级"}
+{"id": "rerank_failure", "category": "reliability", "split": "dev", "risk": "normal", "description": "重排503回退"}
+{"id": "agent_timeout", "category": "reliability", "split": "dev", "risk": "normal", "description": "注入Agent超时后输出可诊断失败"}
+{"id": "tool_failure", "category": "reliability", "split": "dev", "risk": "normal", "description": "订单工具失败不编造成功"}
+{"id": "ticket_version", "category": "reliability", "split": "dev", "risk": "normal", "description": "旧工单版本更新冲突"}
+{"id": "http_retry", "category": "reliability", "split": "dev", "risk": "normal", "description": "503重试与401不重试"}
+{"id": "cache_generation", "category": "reliability", "split": "dev", "risk": "normal", "description": "知识更新后generation改变"}
+{"id": "client_cancel", "category": "reliability", "split": "dev", "risk": "normal", "description": "消费SSE工作流中途取消后不产生售后写入"}

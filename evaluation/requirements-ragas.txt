@@ -1,0 +1,7 @@
+# Tested with the repository's LangChain 1.2.18 / LangGraph 1.1.10.
+ragas==0.4.3
+# 0.4.2 removes vertexai.py, which RAGAS 0.4.3 imports at startup.
+langchain-community==0.3.31
+instructor==1.17.0
+openai==2.54.0
+httpx[socks]>=0.28,<1

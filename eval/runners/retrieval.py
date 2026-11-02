@@ -28,7 +28,7 @@ async def run(args):
             )
             await service.initialize(ROOT / "resources/knowledge")
             data = [
-                json.loads(s) for s in (ROOT / "eval/datasets/qa.jsonl").read_text().splitlines() if s.strip()
+                json.loads(s) for s in (ROOT / "eval/datasets/qa.jsonl").read_text(encoding="utf-8").splitlines() if s.strip()
             ]
             if args.limit:
                 data = data[: args.limit]
@@ -72,7 +72,7 @@ async def run(args):
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
-    p.add_argument("--allow-live", action="store_true", help="Authorize paid embedding/rerank requests")
+    p.add_argument("--allow-live",default=True, action="store_true", help="Authorize paid embedding/rerank requests")
     p.add_argument("--limit", type=int, default=0)
     p.add_argument("--out", type=Path, default=ROOT / "eval/reports/retrieval.json")
     asyncio.run(run(p.parse_args()))
