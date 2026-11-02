@@ -1,0 +1,3 @@
+# 原始资料按字节校验，跨平台检出/导出时保持 LF。
+resources/knowledge/knowledge_base.txt text eol=lf
+eval/datasets/qa.jsonl text eol=lf
